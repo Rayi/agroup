@@ -1,0 +1,15 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}PDF{% endblock %}
+
+{% block content %}
+<main>
+{{ fileName }}
+
+<iframe id="viewer" src = "/.public/html/ViewerJS/#{{ fileName }}" width='1024' height='768' allowfullscreen webkitallowfullscreen></iframe>
+</main>
+
+<script>
+
+</script>
+{% endblock %}

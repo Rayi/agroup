@@ -1,0 +1,52 @@
+{
+  "name": "adoc",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "homepage": "",
+  "bugs": "",
+  "license": "MIT",
+  "licenseUrl": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nwind/adoc"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "busboy": "^0.2.8",
+    "chokidar": "0.8.2",
+    "connect-busboy": "0.0.1",
+    "consolidate": "0.10.0",
+    "cookie-session": "1.0.2",
+    "debug": "1.0.1",
+    "errorhandler": "1.0.2",
+    "eventemitter2": "^0.4.14",
+    "express": "^4.8.5",
+    "express-session": "1.5.1",
+    "gm": "^1.16.0",
+    "karma": "^0.12.22",
+    "lru": "^0.1.5",
+    "marked": "^0.3.2",
+    "mime": "^1.2.11",
+    "moment": "^2.7.0",
+    "morgan": "1.1.1",
+    "requirejs": "^2.1.14",
+    "serve-favicon": "2.0.1",
+    "serve-index": "1.1.4",
+    "shelljs": "^0.3.0",
+    "sockjs": "^0.3.9",
+    "swig": "^1.4.2",
+    "underscore": "^1.6.0"
+  },
+  "devDependencies": {
+    "karma": "^0.12.17",
+    "mocha": "^1.21.4",
+    "should": "^4.0.4",
+    "supertest": "^0.13.0"
+  }
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block head %}
+    
+    
+    <script src="/.public/components/loglevel/dist/loglevel.js"></script>
+    <script src="/.public/components/jquery/dist/jquery.js"></script>
+    <script src="/.public/components/requirejs/require.js"></script>
+    <script src="/.public/components/underscore/underscore.js"></script>
+    <script src="/.public/components/ace-builds/src-noconflict/ace.js"></script>
+    <script src="/.public/components/ace-builds/src-noconflict/ext-language_tools.js"></script>
+    <script src="/.public/components/traceur-runtime/traceur-runtime.js"></script>
+    <link rel="stylesheet" href="/.public/components/semantic-ui/build/packaged/css/semantic.css">
+    <link rel="stylesheet" href="/.public/css/base.css">
+    <link rel="stylesheet" href="/.public/components/webuploader_fex/dist/webuploader.css">
+    <script src="/.public/components/semantic-ui/build/packaged/javascript/semantic.js"></script>
+    {% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>

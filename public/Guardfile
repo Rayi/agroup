@@ -1,0 +1,16 @@
+guard 'livereload' do
+  watch(%r{css/.+\.css})
+  watch(%r{js/.+\.js})
+  watch(%r{html/.+\.html})
+end
+
+guard :shell do
+  watch(%r{scss/(.+)\.scss$}) { |m| `sass scss/#{m[1]}.scss css/#{m[1]}.css` }
+
+  watch(%r{js-src/(.+)\.es6$}) { |m| `traceur --sourcemap --out js/#{m[1]}.js --script js-src/#{m[1]}.es6 --experimental` }
+
+  watch(%r{js-src/(.+)\.jsx$}) { |m| `jsx --harmony js-src/#{m[1]}.jsx > js/#{m[1]}.js` }
+
+  watch(%r{js-src/(.+)\.js$}) { |m| `cp js-src/#{m[1]}.js js/#{m[1]}.js` }
+end
+
