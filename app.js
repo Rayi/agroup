@@ -1,3 +1,8 @@
+var updateNotifier = require('update-notifier');
+var pkg = require('./package.json');
+
+updateNotifier({packageName: pkg.name, packageVersion: pkg.version}).notify();
+
 var config      = require('./config.json');
 // 方便其它模块获取 docPath 等全局信息
 global.config   = config;
@@ -16,6 +21,7 @@ var favicon     = require('serve-favicon');
 var swig        = require('swig');
 
 var fileHandler = require('./lib/fileHandler');
+var editorSync  = require('./lib/editorSync');
 var sendFile    = require('./lib/sendFile');
 var api         = require('./lib/api');
 var thumb       = require('./lib/thumb');
@@ -95,18 +101,10 @@ if ('development' == env) {
   console.log('in development mode');
 }
 
-var server = http.createServer(app).listen(config.port, function() {
+var server = http.createServer(app)
+
+editorSync(server);
+
+server.listen(config.port, function() {
   console.log('Listening on port ' + config.port);
-});
-
-var echo = sockjs.createServer();
-echo.on('connection', function(conn) {
-  conn.on('data', function(message) {
-    conn.write(message);
-  });
-  conn.on('close', function() {});
-});
-
-echo.installHandlers(server, {
-  prefix: '/echo'
 });

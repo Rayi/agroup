@@ -12,6 +12,20 @@
     "semantic-ui": "~0.19.0",
     "traceur-runtime": "~0.0.58",
     "ace-builds": "~1.1.6",
-    "webuploader_fex": "~0.1.4"
+    "webuploader_fex": "~0.1.4",
+    "fastclick": "~1.0.3",
+    "keymaster": "~1.6.2",
+    "nprogress": "~0.1.6",
+    "Countable": "~2.0.2",
+    "validator-js": "~3.17.0",
+    "device.js": "~0.0.3",
+    "routie": "~0.3.2",
+    "checkit": "~0.1.5",
+    "moment": "~2.8.2",
+    "mousetrap": "~1.4.6",
+    "bower-sockjs-client": "~0.3.4",
+    "ot": "~0.0.14",
+    "codemirror": "~4.5.0",
+    "socket.io": "~1.0.6"
   }
 }
