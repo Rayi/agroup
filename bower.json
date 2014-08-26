@@ -26,6 +26,7 @@
     "bower-sockjs-client": "~0.3.4",
     "ot": "~0.0.14",
     "codemirror": "~4.5.0",
-    "socket.io": "~1.0.6"
+    "socket.io": "~1.0.6",
+    "google-diff-match-patch": "~0.1.0"
   }
 }

@@ -21,7 +21,8 @@ var favicon     = require('serve-favicon');
 var swig        = require('swig');
 
 var fileHandler = require('./lib/fileHandler');
-var editorSync  = require('./lib/editorSync');
+// var editorSync  = require('./lib/editorSync');
+var fileSync    = require('./lib/fileSync');
 var sendFile    = require('./lib/sendFile');
 var api         = require('./lib/api');
 var thumb       = require('./lib/thumb');
@@ -36,12 +37,12 @@ app.use(session({
   keys: ['ts', 'sop', 'searchfe']
 }));
 
+app.locals.title = config.title || "adoc";
+app.locals.app_version = require('./package.json').version;
+
 //var debug = require('debug')('http');
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
-
-var errorhandler = require('errorhandler');
-app.use(errorhandler());
 
 app.engine('html', swig.renderFile);
 
@@ -96,6 +97,9 @@ app.use(function(req, res, next) {
 
 var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {
+  var errorhandler = require('errorhandler');
+  app.use(errorhandler());
+  
   app.disable('view cache');
   swig.setDefaults({ cache: false });
   console.log('in development mode');
@@ -103,7 +107,7 @@ if ('development' == env) {
 
 var server = http.createServer(app)
 
-editorSync(server);
+fileSync(server);
 
 server.listen(config.port, function() {
   console.log('Listening on port ' + config.port);

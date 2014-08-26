@@ -1,0 +1,36 @@
+/* line 4, ../sass/codemirror-composition-mod.css.scss */
+.CodeMirror-input-wrapper {
+  overflow: visible !important;
+}
+/* line 7, ../sass/codemirror-composition-mod.css.scss */
+.CodeMirror-input-wrapper textarea {
+  resize: none;
+}
+
+/* line 12, ../sass/codemirror-composition-mod.css.scss */
+.CodeMirror-input-wrapper.in-composition textarea {
+  background-color: transparent;
+  min-width: 500px;
+  height: 1.5em !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  border: none;
+  z-index: 10;
+  top: -2px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -webkit-transition: none;
+  transition: none;
+}
+/* line 26, ../sass/codemirror-composition-mod.css.scss */
+.CodeMirror-input-wrapper.in-composition ~ .CodeMirror-scroll .CodeMirror-cursor {
+  display: none;
+}
+
+/* line 30, ../sass/codemirror-composition-mod.css.scss */
+.CodeMirror-text-in-composition {
+  color: transparent;
+}

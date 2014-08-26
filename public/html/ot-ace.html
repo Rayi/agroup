@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style type="text/css" media="screen">
+      #editor { 
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+      }
+  </style>
+</head>
+<body>
+
+
+<div id="editor"></div>
+
+<ul id="list"></ul>
+
+<script src="/.public/components/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/.public/lib/socket.io-1.0.6.js"></script>
+<script src="/.public/components/ot/dist/ot.js"></script>
+
+<script>
+
+var TextOperation = ot.TextOperation;
+var Cursor = ot.Cursor;
+
+var posToIndex = function(editor, pos) {
+  var offset = 0;
+  var lines = editor.getAllLines();
+  for (var row = 0; row < pos.row; row++) {
+    offset += lines[row];
+  }
+  offset + pos.column;
+  return posTooffset
+}
+
+var indexToPos = function(editor, offset) {
+  var line, lines, row, _len;
+  lines = editor.getAllLines();
+  row = 0;
+  for (row = 0, _len = lines.length; row < _len; row++) {
+    line = lines[row];
+    if (offset <= line.length) break;
+    offset -= lines[row].length + 1;
+  }
+  return {
+    row: row,
+    column: offset
+  };
+};
+
+var Range = ace.require('ace/range').Range;
+
+function ACEAdapter(editor) {
+  this.editor = editor;
+
+  editor.on('change', this.onChange.bind(this));
+  editor.on('focus', this.onFocus.bind(this));
+  editor.on('blur', this.onBlur.bind(this));
+  editor.onCursorChange(this.onCursorChange);
+}
+
+ACEAdapter.prototype.onChange = function(e) {
+  console.log('onChange', e);
+  var delta = e.data;
+  var docLength = this.getValue.length;
+  var operation = new TextOperation().retain(docLength);
+  var inverse = new TextOperation().retain(docLength);
+
+  switch (delta.action) {
+    
+  }
+
+};
+
+ACEAdapter.prototype.onFocus = function(e) {
+  //console.log('onFocus', e);
+};
+
+ACEAdapter.prototype.onBlur = function(e) {
+  //console.log('onBlur', e);
+};
+
+
+ACEAdapter.prototype.detach = function() {
+  //TODO;
+};
+
+ACEAdapter.prototype.onCursorChange = function(e) {
+  console.log('onCursorChange', e);
+};
+
+ACEAdapter.prototype.getValue = function() {
+  this.editor.getValue();
+};
+
+ACEAdapter.prototype.getCursor = function() {
+  var cursorPos = this.editor.getCursorPosition();
+};
+
+ACEAdapter.prototype.setCursor = function(cursor) {
+  console.log('setCursor', cursor);
+};
+
+ACEAdapter.prototype.setOtherCursor = function(cursor, color, clientId) {
+  //TODO;
+};
+
+ACEAdapter.prototype.registerCallbacks = function(cb) {
+  this.callbacks = cb;
+};
+
+ACEAdapter.prototype.trigger = function (event) {
+  var args = Array.prototype.slice.call(arguments, 1);
+  var action = this.callbacks && this.callbacks[event];
+  if (action) { action.apply(this, args); }
+};
+
+
+ACEAdapter.prototype.applyOperation = function(operation) {
+  console.log('applyOperation', operation);
+  this.ignoreNextChange = true;
+  var editor = this.editor.getSession();
+  var ops = operation.ops;
+  var index = 0; // holds the current index into CodeMirror's content
+  for (var i = 0, l = ops.length; i < l; i++) {
+    var op = ops[i];
+    if (TextOperation.isRetain(op)) {
+      index += op;
+    } else if (TextOperation.isInsert(op)) {
+      editor.insert(posToIndex(editor, index), op);
+      index += op.length;
+    } else if (TextOperation.isDelete(op)) {
+      var from = cm.posFromIndex(index);
+      var to   = cm.posFromIndex(index - op);
+      var deleteRange = new Range(from.row, from.column, to.row, tow.column);
+      editor.remove(deleteRange);
+    }
+  }
+}
+
+ACEAdapter.prototype.registerUndo = function() {
+  //TODO;
+}
+
+ACEAdapter.prototype.registerRedo = function() {
+  //TODO;
+}
+
+</script>
+
+<script>
+
+var EditorClient = ot.EditorClient;
+var SocketIOAdapter = ot.SocketIOAdapter;
+
+socket = io.connect();
+socket.on('doc', function (obj) {
+  init(obj.str, obj.revision, obj.clients, new SocketIOAdapter(socket));
+});
+
+function login (username, callback) {
+  socket
+    .emit('editorSync', { path:"doc/m.md", username: username })
+    .on('logged_in', callback);
+};
+
+var username = new Date();
+
+login(username.toString(), function () {
+  var li = document.createElement('li');
+  li.appendChild(document.createTextNode(username + " (that's you!)"));
+  document.getElementById('list').appendChild(li);
+
+  cmClient.serverAdapter.ownUserName = username;
+  // cm.setOption('readOnly', false);
+});
+
+var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+
+function init (str, revision, clients, serverAdapter) {
+  editor.setValue(str);
+  cmClient = window.cmClient = new EditorClient(
+    revision, clients,
+    serverAdapter, new ACEAdapter(editor)
+  );
+  
+}
+
+
+
+</script>
+</body>
+</html>

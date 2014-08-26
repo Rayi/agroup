@@ -33,6 +33,7 @@
     "express": "^4.8.5",
     "express-session": "1.5.1",
     "gm": "^1.16.0",
+    "googlediff": "^0.1.0",
     "karma": "^0.12.22",
     "knex": "^0.6.22",
     "lodash": "^2.4.1",

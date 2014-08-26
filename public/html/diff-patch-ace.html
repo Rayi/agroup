@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style type="text/css" media="screen">
+      #editor { 
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+      }
+  </style>
+</head>
+<body>
+
+<div id="editor"></div>
+
+<ul id="list"></ul>
+
+<script src="/.public/components/ace-builds/src-noconflict/ace.js"></script>
+<script src="/.public/components/jquery/dist/jquery.js"></script>
+<script src="/.public/components/google-diff-match-patch/diff_match_patch.js"></script>
+<script src="/.public/lib/socket.io-1.0.6.js"></script>
+
+<script>
+
+
+
+var diff = new diff_match_patch();
+
+$.get('/m.md?raw=true', function(content) {
+  var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/monokai");
+      editor.getSession().setMode("ace/mode/javascript");
+      editor.setValue(content);
+
+  var oldContent = content;
+
+  var inSync = false;
+
+  // 这样太耗性能了
+  // editor.session.on('change', function(e) {
+  //   if (inSync) {
+  //     return;
+  //   }
+  //   throttle(sendPatch, 5000)();
+  // });
+
+  setInterval(function() {
+    sendPatch();
+  }, 2000);
+
+  var socket = io('/file-sync');
+
+  var username = new Date();
+
+  socket.emit('login', { 
+    path:"content/doc/m.md", 
+    username: username 
+  });
+
+  socket.on('server:patch', function(message) {
+    console.log('server:patch', message);
+    var patch = message.patch;
+    var patches = diff.patch_fromText(patch);
+    var results = diff.patch_apply(patches, editor.getValue());
+    var content = results[0];
+    console.log('result', results);
+    inSync = true;
+    editor.setValue(content);
+    inSync = false;
+    oldContent = content
+  });
+
+  function sendPatch() {
+    var newContent = editor.getValue();
+    if (oldContent != newContent) {
+      console.log('content change', newContent);
+      var patchList = diff.patch_make(oldContent, newContent);
+      var patchText = diff.patch_toText(patchList);
+      oldContent = newContent;
+      socket.emit('patch', {
+        'patch': patchText
+      });
+    }
+  }
+
+  
+})
+
+
+
+
+
+</script>
+</body>
+</html>
