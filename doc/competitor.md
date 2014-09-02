@@ -153,7 +153,7 @@ gitlab 主要是用来管理项目的，但也可以用来进行内部资料分�
 
 最初是打算抄 yammer 的，不过目前看起来并不是，但功能倒是挺多，比如邮件、日程管理等
 
-![](competitor/tita.jpg)
+![](competitor/tita.jpeg)
 
 ## 明道
 
