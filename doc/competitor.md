@@ -148,6 +148,18 @@ Basecamp 是按照项目来划分的，主要有一下几个部分：
 
 另一个很像的产品是 eteams
 
+## workor
+
+![](competitor/workor.png)
+
+基于 WebRTC 的视频协作工具
+
+## LiveMinutes
+
+优点：
+
+* 可以对图片、PDF 等文档进行标记评论，对设计稿挺有帮助
+
 ## fengcheco
 
 ![](competitor/fengcheco.png)

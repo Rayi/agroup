@@ -21,7 +21,6 @@ var favicon     = require('serve-favicon');
 var swig        = require('swig');
 
 var fileHandler = require('./lib/fileHandler');
-// var editorSync  = require('./lib/editorSync');
 var fileSync    = require('./lib/fileSync');
 var sendFile    = require('./lib/sendFile');
 var api         = require('./lib/api');
@@ -71,15 +70,6 @@ app.get('/.api/mv', api.mv);
 app.get('/.api/mkdir', api.mkdir);
 
 app.use(thumb);
-
-// 获取原始文件方法
-app.use(function(req, res, next) {
-  if ('raw' in req.query) {
-    sendFile(req, res);
-  } else {
-    next();
-  }
-});
 
 // 针对特定文件的处理
 app.use(function(req, res, next) {
