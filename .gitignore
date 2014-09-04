@@ -3,3 +3,5 @@ cache
 content
 public/components
 public/css
+.DS_Store
+public/.sass-cache
