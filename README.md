@@ -15,3 +15,9 @@
 2. mongoDB
 2. socketIO
 
+###步骤
+
+1. brower install
+2. npm install
+3. 启动mongoDB服务
+4. grunt serve启动项目服务
