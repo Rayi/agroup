@@ -1,11 +1,17 @@
+#Agroup
 
-ADoc 2.0 版本，对团队文档管理的全新思考。
+##项目框架
 
-主要会有以下不同：
+使用的[generator-angular-fullstack](https://github.com/DaftMonk/generator-angular-fullstack)作为项目脚手架，添加项目模块请使用它自动生成，目前项目采用到的大致框架如下：
 
-* 具备帐号系统，解决权限、文档更新提醒等等功能
-* 具备在线编辑功能，通过协同编辑来解决冲突
-* 扁平化的文件管理，通过检索和过滤系统来快速查找文件
-* 多文档格式支持，Word、思维导图、TODO 等
+###前端
 
-目前仅仅是代码测试阶段，产品形态也没完全想好，预计 9 月先在内部测试。
+1. Angularjs
+2. scss 
+
+###后端
+
+1. express
+2. mongoDB
+2. socketIO
+

@@ -1,4 +1,0 @@
-{
-  "main": "adoc/service/WebServer.groovy",
-  "auto-redeploy": true
-}

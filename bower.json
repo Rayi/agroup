@@ -1,32 +1,21 @@
 {
-  "name": "adoc",
-  "ignore": [
-    ".jshintrc",
-    "**/*.txt"
-  ],
+  "name": "agroup",
+  "version": "0.0.0",
   "dependencies": {
-    "jquery": "~2.1.1",
-    "underscore": "~1.6.0",
-    "loglevel": "~1.0.0",
-    "requirejs": "~2.1.14",
-    "semantic-ui": "~0.19.0",
-    "traceur-runtime": "~0.0.58",
-    "ace-builds": "~1.1.6",
-    "webuploader_fex": "~0.1.4",
-    "fastclick": "~1.0.3",
-    "keymaster": "~1.6.2",
-    "nprogress": "~0.1.6",
-    "Countable": "~2.0.2",
-    "validator-js": "~3.17.0",
-    "device.js": "~0.0.3",
-    "routie": "~0.3.2",
-    "checkit": "~0.1.5",
-    "moment": "~2.8.2",
-    "mousetrap": "~1.4.6",
-    "bower-sockjs-client": "~0.3.4",
-    "ot": "~0.0.14",
-    "codemirror": "~4.5.0",
-    "socket.io": "~1.0.6",
-    "google-diff-match-patch": "~0.1.0"
+    "angular": ">=1.2.*",
+    "json3": "~3.3.1",
+    "es5-shim": "~3.0.1",
+    "jquery": "~1.11.0",
+    "angular-resource": ">=1.2.*",
+    "angular-cookies": ">=1.2.*",
+    "angular-sanitize": ">=1.2.*",
+    "angular-route": ">=1.2.*",
+    "font-awesome": ">=4.1.0",
+    "lodash": "~2.4.1",
+    "angular-socket-io": "~0.6.0"
+  },
+  "devDependencies": {
+    "angular-mocks": ">=1.2.*",
+    "angular-scenario": ">=1.2.*"
   }
 }

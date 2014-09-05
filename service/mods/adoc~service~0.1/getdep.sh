@@ -1,1 +1,0 @@
-ivy -retrieve "lib/[artifact]-[revision](-[classifier]).[ext]"

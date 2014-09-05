@@ -1,5 +1,0 @@
-<ivy-module version="2.0">
-    <dependencies>
-        <dependency org="org.imgscalr" name="imgscalr-lib" rev="4.2"/>
-    </dependencies>
-</ivy-module>

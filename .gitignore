@@ -1,7 +1,8 @@
 node_modules
-cache
-content
-public/components
-public/css
-.DS_Store
-public/.sass-cache
+public
+.tmp
+.sass-cache
+.idea
+client/bower_components
+dist
+/server/config/local.env.js
