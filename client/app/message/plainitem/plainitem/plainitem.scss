@@ -1,0 +1,29 @@
+.plainitem-box{
+  display: flex;
+  padding:16px 0;
+  border-bottom: 1px solid #e9e9e9;
+  .msg-avatar{
+    width:36px;
+    height:36px;
+    margin-right:10px;
+    img{
+      width:36px;
+      height:36px;
+    }
+  }
+  .msg-commonbox{
+    flex-grow: 1;
+    .msg-hd{
+      font-size:13px;
+      display: flex;
+      color: #888;
+      .msg-hd-title{
+        flex-grow: 1;
+      }
+    }
+    .plainitem{
+      margin-top:5px;
+      font-size:15px;
+    }
+  }
+}
