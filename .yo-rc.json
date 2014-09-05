@@ -12,11 +12,16 @@
       "js": true,
       "html": true,
       "sass": true,
-      "ngroute": true,
+      "uirouter": true,
       "bootstrap": false,
       "uibootstrap": false,
       "socketio": true,
-      "mongoose": true
+      "mongoose": true,
+      "auth": true,
+      "oauth": true,
+      "googleAuth": true,
+      "facebookAuth": true,
+      "twitterAuth": true
     }
   },
   "generator-ng-component": {
@@ -27,7 +32,7 @@
     "basePath": "client",
     "moduleName": "",
     "filters": [
-      "ngroute"
+      "uirouter"
     ],
     "extensions": [
       "js",
