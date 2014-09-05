@@ -1,24 +1,29 @@
 'use strict';
 
-angular.module('agroupApp').directive('msglist', function() {
+angular.module('agroupApp').directive('msglist', ['$http','socket',
+function($http,socket) {
+	
+	
+	
 	return {
 		templateUrl : 'app/message/msglist/msglist.html',
 		restrict : 'EA',
 		link : function(scope, element, attrs) {
-			var datas = [];
-			for(var i = 0;i<10;i++){
-				datas.push({
-					data:{
-						avartar:"http://tp4.sinaimg.cn/2129028663/180/5684393877/1",
-						nickname:"张自萌",
-						time:"12:23PM",
-						content:"擦擦擦啊擦擦擦擦擦"
-					},
-					type:"plain"
+			
+			$http.get('api/message/list').success(function(data,status){
+				scope.datas = data.datas;
+				scope.$apply();
+			});
+			scope.postText = '';
+			scope.onPostMessage = function(){
+				$http.post('api/message/post',{
+					'message':'scope.postText',
+					'type':'plain'
+				}).success(function(){
+					
 				});
 			}
-			scope.datas = datas;
 			
 		}
 	};
-}); 
+}]);

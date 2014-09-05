@@ -2,7 +2,7 @@
 
 angular.module('agroupApp').directive('plainitem', function() {
 	return {
-		templateUrl : 'app/message/plainitem/plainitem/plainitem.html',
+		templateUrl : 'app/message/plainitem/plainitem.html',
 		restrict : 'EA',
 		scope : {
 			data : '=data'
