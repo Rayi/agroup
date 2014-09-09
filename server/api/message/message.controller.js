@@ -3,7 +3,7 @@
 var _ = require('lodash');
 var fs = require('fs');
 var Message = require('./message.model');
-
+var observe = require('./message.observe');
 exports.list = function(req, res) {
 	return res.jsonp(JSON.parse(fs.readFileSync(__dirname+"/datas/list.json")));
 };
@@ -12,14 +12,15 @@ exports.post = function(req,res){
 	//todo:save mongodb
 	
 	//get mime info
-	var type = req.params['type'];
-	var message = req.params['message'];
+	
+	var type = req.body['type'];
+	var message = req.body['message'];
 	var user = {
 		avartar:"http://tp4.sinaimg.cn/2129028663/180/5684393877/1",
 		nickname:"张自萌"
 	}
 	
-	console.info({
+	observe.groupEmit("group1",{
 		"type":type,
 		"content":message,
 		"avartar":user.avartar,
