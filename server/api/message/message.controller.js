@@ -5,33 +5,53 @@ var fs = require('fs');
 var Message = require('./message.model');
 var observe = require('./message.observe');
 exports.list = function(req, res) {
-	return res.jsonp(JSON.parse(fs.readFileSync(__dirname+"/datas/list.json")));
+	
+	Message.find(function(err,messages){
+		if (err)
+			return console.error(err);
+		var datas = [];
+		messages.forEach(function(message){
+			datas.push(message.getMessage());
+		});
+		return res.jsonp({err:0,data:datas});
+	});
+	
+	
 };
 
-exports.post = function(req,res){
+var user = {
+	_id : "540ec253323a62a0179a215f",
+	avartar : "http://tp4.sinaimg.cn/2129028663/180/5684393877/1",
+	nickname : "张自萌"
+}
+
+exports.post = function(req, res) {
 	//todo:save mongodb
-	
+
 	//get mime info
-	
-	var type = req.body['type'];
-	var message = req.body['message'];
-	var user = {
-		avartar:"http://tp4.sinaimg.cn/2129028663/180/5684393877/1",
-		nickname:"张自萌"
-	}
-	
-	observe.groupEmit("group1",{
-		"type":type,
-		"content":message,
-		"avartar":user.avartar,
-		"nickname":user.nickname
+
+	var message = new Message({
+		'content' : req.body['message'],
+		'type' : req.body['type'],
+		'user' : user._id
+	});
+
+	message.save(function(err, message) {
+		if (err)
+			return console.error(err);
+		observe.groupEmit("group1", {
+			"type" : message.type,
+			"content" : message.content,
+			"avartar" : user.avartar,
+			"nickname" : user.nickname
+		});
+		return res.jsonp({
+			err : 0,
+			message : "成功发送消息"
+		})
 	})
+
 	
-	return res.jsonp({
-		err:0,
-		message:"成功发送消息"
-	})
-	
-	
+
 }
 
