@@ -27,12 +27,14 @@ module.exports = {
     getUserName(ticket, function(name) {
       if (name) {
         success = true;
-        res.end(name);
+        req.session.user = {
+          'name': name,
+          'email': name + '@baidu.com' //不完全准确，后续待优化
+        }
+        res.redirect('/');
       } else {
         //重试一次
-        getUserName(ticket, function(name) {
-          res.end(name);
-        })
+        res.redirect(req.originalUrl);
       }
     });
   }
