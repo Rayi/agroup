@@ -35,6 +35,7 @@ MessageSchema.methods.getMessage = function(){
 MessageSchema.methods.getPlain = function(){
 	return {
 		data:{
+			id:this._id,
 			avartar:'http://tp4.sinaimg.cn/2129028663/180/5684393877/1',
 			nickname:'张自萌',
 			time:ago(this.date),

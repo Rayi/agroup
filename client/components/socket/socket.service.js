@@ -20,7 +20,7 @@ angular.module('agroupApp').factory('socket', function(socketFactory) {
 		joinGroup : function(groupId, cb) {
 			socket.emit('subscribe', 'group1');
 			socket.on('message', function(data) {
-				console.info(data);
+				cb&&cb(data);
 			});
 		},
 

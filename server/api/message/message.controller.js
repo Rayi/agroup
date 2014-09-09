@@ -39,16 +39,9 @@ exports.post = function(req, res) {
 	message.save(function(err, message) {
 		if (err)
 			return console.error(err);
-		observe.groupEmit("group1", {
-			"type" : message.type,
-			"content" : message.content,
-			"avartar" : user.avartar,
-			"nickname" : user.nickname
-		});
-		return res.jsonp({
-			err : 0,
-			message : "成功发送消息"
-		})
+		var data = message.getMessage();
+		observe.groupEmit("group1", data);
+		return res.jsonp({err:0,data:data});
 	})
 
 	

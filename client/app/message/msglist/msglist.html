@@ -5,4 +5,7 @@
 		<input type="text" ng-model="postText" class="form-control" placeholder="Username">
 	</div>
 </form>
-<plainitem data="item.data" ng-repeat="item in datas" ng-if="item.type=='plain'"></plainitem>
+<div class="msglist-box">
+	<plainitem data="item.data" ng-repeat="item in msglist" ng-if="item.type=='plain'"></plainitem>	
+</div>
+

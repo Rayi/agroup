@@ -10,10 +10,12 @@ function($http,socket) {
 		restrict : 'EA',
 		link : function(scope, element, attrs) {
 			socket.joinGroup('group1',function(data){
-				console.info(data);
+				
+				scope.msglist.push(JSON.parse(data));	
 			});
 			$http.get('api/message/list').success(function(data,status){
-				scope.datas = data.datas;
+			
+				scope.msglist = data.data;
 				scope.$apply();
 			});
 			scope.postText = '';
@@ -21,7 +23,10 @@ function($http,socket) {
 				$http.post('api/message/post',{
 					'message':scope.postText,
 					'type':'plain'
-				}).success(function(){
+				}).success(function(data){
+					if(data.err == 0){
+						scope.msglist.push(data.data);	
+					}
 					
 				});
 			}

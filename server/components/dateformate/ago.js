@@ -1,15 +1,15 @@
-var moment = require('moment');
+var dateFormat = require('dateformat');
 
 function getDateDiff(date) {
 	var now = new Date();
 	var formate = "yyyy-MM-dd HH:mm:ss";
 	if (now.getDate() == date.getDate()) {
 
-		formate = "HH:mm"
+		formate = "HH:MM"
 	}else if(now.getFullYear() == date.getFullYear()) {
-		formate = "mm-dd HH:mm:ss";
+		formate = "mm-dd HH:MM:ss";
 	}
-	return moment(date,formate);
+	return dateFormat(date,formate);
 }
 
 module.exports = getDateDiff; 
