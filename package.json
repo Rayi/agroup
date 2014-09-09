@@ -2,6 +2,19 @@
   "name": "agroup",
   "version": "0.0.0",
   "main": "server/app.js",
+  "contributors": [{
+    "name": "nwind",
+    "email": "duoyi.wu@gmail.com"
+  }, {
+    "name": "Miller",
+    "email": "chen.minliang@gmail.com"
+  }, {
+    "name": "zzm",
+    "email": "30962088@qq.com"
+  }, {
+    "name": "zn",
+    "email": "hunter.dding@gmail.com"
+  }],
   "dependencies": {
     "express": "~4.0.0",
     "morgan": "~1.0.0",

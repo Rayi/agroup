@@ -41,23 +41,8 @@ var all = {
     }
   },
 
-  facebook: {
-    clientID:     process.env.FACEBOOK_ID || 'id',
-    clientSecret: process.env.FACEBOOK_SECRET || 'secret',
-    callbackURL:  (process.env.DOMAIN || '') + '/auth/facebook/callback'
-  },
-
-  twitter: {
-    clientID:     process.env.TWITTER_ID || 'id',
-    clientSecret: process.env.TWITTER_SECRET || 'secret',
-    callbackURL:  (process.env.DOMAIN || '') + '/auth/twitter/callback'
-  },
-
-  google: {
-    clientID:     process.env.GOOGLE_ID || '854442181910-mt01f4cg902keq6e9pes5866c1r5frip.apps.googleusercontent.com',
-    clientSecret: process.env.GOOGLE_SECRET || 'p6MyVP9ZM61vChsQUNtEkAXy',
-    callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
-  }
+  // Default auth is fake
+  auth: 'fake'
 };
 
 // Export the config object based on the NODE_ENV
