@@ -14,12 +14,14 @@ angular.module('agroupApp').factory('socket', function(socketFactory) {
 	});
 
 	return {
-		
+
 		socket : socket,
-		
-		
-		syncGroup:function(groupId,cb){
-			socket.on()
+
+		joinGroup : function(groupId, cb) {
+			socket.emit('subscribe', 'group1');
+			socket.on('message', function(data) {
+				console.info(data);
+			});
 		},
 
 		/**

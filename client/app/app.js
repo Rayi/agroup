@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('agroupApp', [
+  'RootModule',
   'ngCookies',
   'ngResource',
   'ngSanitize',
