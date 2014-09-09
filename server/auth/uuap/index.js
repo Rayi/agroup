@@ -31,7 +31,7 @@ module.exports = {
           'name': name,
           'email': name + '@baidu.com' //不完全准确，后续待优化
         }
-        res.end(name);
+        res.redirect('/');
       } else {
         //重试一次
         getUserName(ticket, function(name) {
@@ -39,7 +39,7 @@ module.exports = {
             'name': name,
             'email': name + '@baidu.com'
           }
-          res.end(name);
+          res.redirect('/');
         })
       }
     });
