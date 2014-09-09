@@ -34,13 +34,7 @@ module.exports = {
         res.redirect('/');
       } else {
         //重试一次
-        getUserName(ticket, function(name) {
-          req.session.user = {
-            'name': name,
-            'email': name + '@baidu.com'
-          }
-          res.redirect('/');
-        })
+        res.redirect(req.originalUrl);
       }
     });
   }
