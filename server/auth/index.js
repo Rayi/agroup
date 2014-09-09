@@ -12,7 +12,8 @@ if (config.auth === 'fake') {
 }
 
 if (config.auth === 'uuap') {
-  router.use('/login', uuap);
+  router.use('/login', uuap.login);
+  router.use('/callback', uuap.callback);
 }
 
 router.use('/logout', function(req, res, next) {
