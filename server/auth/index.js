@@ -1,21 +1,23 @@
 'use strict';
 
 var express = require('express');
-var passport = require('passport');
 var config = require('../config/environment');
-var User = require('../api/user/user.model');
-
-// Passport Configuration
-require('./local/passport').setup(User, config);
-require('./facebook/passport').setup(User, config);
-require('./google/passport').setup(User, config);
-require('./twitter/passport').setup(User, config);
+var fake = require('./fake');
+var uuap = require('./uuap');
 
 var router = express.Router();
 
-router.use('/local', require('./local'));
-router.use('/facebook', require('./facebook'));
-router.use('/twitter', require('./twitter'));
-router.use('/google', require('./google'));
+if (config.auth === 'fake') {
+  router.use('/login', fake);
+}
+
+if (config.auth === 'uuap') {
+  router.use('/login', uuap);
+}
+
+router.use('/logout', function(req, res, next) {
+  delete req.session.user;
+  res.redirect('/');
+});
 
 module.exports = router;
