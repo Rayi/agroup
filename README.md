@@ -17,7 +17,7 @@
 
 ###步骤
 
-1. brower install
+1. bower install
 2. npm install
 3. 启动mongoDB服务
 4. grunt serve启动项目服务
