@@ -23,19 +23,17 @@ module.exports = {
   },
   callback: function(req, res) {
     var ticket = req.param('ticket');
-    var success = false;
-    //有时候会失败，所以多试几次
-    for (var i = 0; i < 10; i++) {
-      if (success) {
-        break;
-      }
-      getUserName(ticket, function(name) {
-        if (name) {
-          success = true;
+
+    getUserName(ticket, function(name) {
+      if (name) {
+        success = true;
+        res.end(name);
+      } else {
+        //重试一次
+        getUserName(ticket, function(name) {
           res.end(name);
-        }
-      });
-    }
-    res.end('');
+        })
+      }
+    });
   }
 }
